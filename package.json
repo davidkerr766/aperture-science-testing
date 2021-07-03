@@ -2,11 +2,11 @@
   "name": "aperture-science-testing",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --fix",
-    "start": "nodemon index.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",

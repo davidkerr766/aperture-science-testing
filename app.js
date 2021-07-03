@@ -3,10 +3,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const port = process.env.PORT || '4000';
 const Subject = require('./models/subjectModel');
 const subjectRouter = require('./routes/subjectRouter')(Subject);
+const Question = require('./models/questionModel');
+const questionRouter = require('./routes/questionRouter')(Question);
 
 const atlasUri = `mongodb+srv://express-server:${process.env.ATLAS_PASS}@cluster0.c0qpm.mongodb.net/aperture?retryWrites=true&w=majority`;
 mongoose.connect(atlasUri, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
@@ -18,6 +19,12 @@ db.once('open', () => {
   console.log('connected to AtlasDB');
 });
 
-app.use('/api', subjectRouter);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-module.exports = { app };
+app.use('/api/subjects', subjectRouter);
+app.use('/api/questions', questionRouter);
+
+app.listen(port, () => {
+  console.log(`Listening on port: ${port}`);
+});

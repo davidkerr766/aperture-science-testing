@@ -2,7 +2,7 @@ const express = require('express');
 
 const routes = (Subject) => {
   const subjectRouter = express.Router();
-  subjectRouter.route('/subjects')
+  subjectRouter.route('/')
     .post((req, res) => {
       const subject = new Subject(req.body);
       subject.save();
@@ -21,15 +21,6 @@ const routes = (Subject) => {
       });
     });
 
-  subjectRouter.route('/subjects/:id')
-    .get((req, res) => {
-      Subject.findById(req.params.id, (err, subject) => {
-        if (err) {
-          return res.send(err);
-        }
-        return res.json(subject);
-      });
-    });
   return subjectRouter;
 };
 
