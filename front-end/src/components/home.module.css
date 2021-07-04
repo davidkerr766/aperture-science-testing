@@ -1,0 +1,56 @@
+.container {
+    background-color: #ff990089;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.selection {
+    display: flex;
+    margin: 3.5rem 0;
+    width: 30rem;
+    justify-content: space-between;
+}
+
+.selection button {
+    padding: 1rem 1rem;
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    width: 13rem;
+}
+
+.selection button:hover {
+    cursor: pointer;
+}
+
+.test {
+    display: flex;
+    flex-direction: column;
+    background-color: #6eb9d7;
+    width: 26rem;
+    padding: 2rem;
+    border-radius: .5rem;
+    border: 1px solid black;
+    color: white;
+}
+
+.test label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    line-height: 1.5rem;
+}
+
+.test input,
+.test select {
+    padding: .5rem;
+}
+
+.btn {
+    padding: .5rem;
+    width: 10rem;
+    display: block;
+    margin: auto;
+}
