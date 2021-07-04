@@ -103,13 +103,14 @@ const Home = ({user}) => {
       setQuestions(result.data)
     }
     const fetchSubmissions = async () => {
-      const query = user.id === 'admin' ? "" : `?id=${user.id}`
+      let query
+      if (user) query = user.id === 'admin' ? "" : `?id=${user.id}`
       const result = await axios.get('http://localhost:4000/api/submissions' + query)
       setSubmissions(result.data)
     }
     fetchQuestions()
     fetchSubmissions()
-  }, [displayHistory, user.id])
+  }, [displayHistory, user])
 
   const renderContent = () => {
     if (questions) {
