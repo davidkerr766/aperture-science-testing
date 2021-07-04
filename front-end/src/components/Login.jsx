@@ -18,10 +18,10 @@ const Login = ({setUser}) => {
     }
     const response = await axios.post('http://localhost:4000/api/login', credentials)
     if (response.data.role && response.data.role === 'admin') {
-      setUser('admin')
+      setUser({ id: 'admin', username: 'GLaDOS' })
       history.push('/home')
     } else if (response.data.length > 0) {
-      setUser(response.data[0]._id)
+      setUser({ id: response.data[0]._id, username: response.data[0].Username })
       history.push('/home')
     } else {
       setError(true)

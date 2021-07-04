@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useHistory } from "react-router-dom";
 import axios from 'axios'
 import styles from './home.module.css'
@@ -8,6 +8,7 @@ const Home = ({user}) => {
   if (!user) history.push('/');
 
   const [questions, setQuestions] = useState()
+  const form = useRef(null)
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -17,6 +18,24 @@ const Home = ({user}) => {
     fetchQuestions()
   }, [])
 
+  const handleSubmit  = (e) => {
+    e.preventDefault()
+    const formData = Object.fromEntries(new FormData(form.current).entries())
+    const responses = questions.map((question) =>{
+      return { question: question.Question, value: formData[question.Question] || "off" }
+    })
+    const submission = {
+      username: user.username,
+      date: Date(),
+      userId: user.id,
+      responses: responses
+    }
+    axios.post('http://localhost:4000/api/submissions', submission)
+      .then(()=>{
+        alert('Test Submitted')
+      })
+  }
+
 
   return (
     <div className={styles.container} >
@@ -24,12 +43,16 @@ const Home = ({user}) => {
         <button>TAKE TEST</button>
         <button>HISTORY</button>
       </div>
-      <form className={styles.test}>
+      <form
+        ref={form}
+        className={styles.test}
+        onSubmit={handleSubmit}
+      >
         {questions && questions.map((question) => (
           <label key={question._id}>
             {question.Label}
             {question.Options ?
-              <select>
+              <select name={question.Question}>
                 {question.Options.map((option) => (
                   <option
                     key={option.value}
@@ -39,7 +62,7 @@ const Home = ({user}) => {
                   </option>
                 ))}
               </select>
-              :<input type={question.Type}/>
+              :<input type={question.Type} name={question.Question} />
             }
           </label>
         ))}
