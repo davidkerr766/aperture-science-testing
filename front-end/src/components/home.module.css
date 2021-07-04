@@ -54,3 +54,24 @@
     display: block;
     margin: auto;
 }
+
+.history {
+    width: 30rem;
+}
+
+.submission {
+    background-color: #6eb9d7;
+    color: white;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    border-radius: .5rem;
+    border: 1px solid black;
+}
+
+.submission * {
+    padding: .1rem 0;
+}
+
+.submission li {
+    list-style-position: inside;
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"
 import styles from './login.module.css'
 import logo from '../images/aperture_logo.svg'
 import axios from 'axios'
@@ -55,4 +55,4 @@ const Login = ({setUser}) => {
   )
 }
 
-export default Login;
+export default Login

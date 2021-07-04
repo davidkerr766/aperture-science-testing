@@ -10,9 +10,9 @@ const routes = (Submission) => {
     })
     .get((req, res) => {
       const query = {};
-      //   if (req.query.id) {
-      //     query.userId = req.query.id;
-      //   }
+      if (req.query.id) {
+        query.userId = req.query.id;
+      }
       Submission.find(query, (err, submissions) => {
         if (err) {
           return res.send(err);
