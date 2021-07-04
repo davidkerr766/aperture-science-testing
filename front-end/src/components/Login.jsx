@@ -1,14 +1,27 @@
 import React, { useState } from 'react'
 import styles from './login.module.css'
 import logo from '../images/aperture_logo.svg'
+import axios from 'axios'
 
-const Login = () => {
+const Login = ({setUser}) => {
   const [userName, setUserName] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(userName, password)
+    const credentials = {
+      Username: userName,
+      Password: password,
+    }
+    const response = await axios.post('http://localhost:4000/api/login', credentials)
+    if (response.data.role && response.data.role === 'admin') {
+      setUser('admin')
+    } else if (response.data.length > 0) {
+      setUser(response.data[0]._id)
+    } else {
+      setError(true)
+    }
   }
 
   return (
@@ -18,7 +31,7 @@ const Login = () => {
         src={logo} 
         alt="aperture laboratories logo"
       />
-      <div className={styles.login}>
+      <div className={`${styles.login} ${error ? styles.error : ""}`}>
         <form onSubmit={handleSubmit}>
           <label>
             Username

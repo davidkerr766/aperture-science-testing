@@ -21,6 +21,14 @@
   border: 1px solid black;
 }
 
+.error {
+  color: rgb(223, 31, 31);
+}
+
+.error label::before {
+  content: "*";
+} 
+
 .login label {
   display: block;
   width: 10rem;

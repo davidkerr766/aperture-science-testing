@@ -1,8 +1,11 @@
+import React, { useState } from 'react'
 import Login from './components/Login';
 
 function App() {
+  const [user, setUser] = useState()
+
   return (
-    <Login />
+    <Login setUser={setUser} />
   );
 }
 
