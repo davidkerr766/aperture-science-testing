@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: #ff990089;
+  font-family: sans-serif;
+}
+
+.logo {
+  transform: scale(0.5);
+}
+
+.login {
+  margin-top: 10rem;
+  background-color: #6eb9d7;
+  height: min-content;
+  padding: 2rem 3.5rem 2rem 3rem;
+  color: white;
+  border-radius: .5rem;
+  border: 1px solid black;
+}
+
+.login label {
+  display: block;
+  width: 10rem;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+
+.login input {
+  padding: .5rem;
+}
+
+.login label:first-child {
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  margin: auto;
+  display: block;
+  margin-top: 1.5rem;
+  padding: .5rem 1.5rem;
+}
